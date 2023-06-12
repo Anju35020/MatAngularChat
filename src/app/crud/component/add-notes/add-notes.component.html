@@ -1,0 +1,51 @@
+<app-navbar></app-navbar>
+
+<!-- getList -->
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-3 mt-3" *ngFor = 'let data of values'>
+            <div class="card">
+                <div class="card-title mt-3 px-4">
+                    <h6>{{data.title}}</h6>
+                </div>
+                <div class="card-body px-4 py-3">
+                    <p>{{data.description}}</p>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <button class="btn btn-primary" (click)="onEdit(data)" data-bs-toggle="modal" data-bs-target="#exampleModal1"><i class="bi bi-pen"></i></button>
+        
+                            </div>
+                            <div class="col-md-7"></div>
+                            <div class="col-md-1">
+                                <button class="btn btn-danger" (click) = "onDelete(data.id)"><i class="bi bi-trash"></i></button>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5">Edit Daily Notes</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="notesForm" (ngSubmit)="onUpdate()">
+            <label for="">Note Title:</label>
+            <input type="text" formControlName="title" class="form-control">
+            <label for="">Note Description:</label>
+            <textarea class="form-control" formControlName="description"></textarea>
+            <div class="mt-3 col-md-2 offset-10">
+            <button type="submit" class="btn btn-primary">Update</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  
